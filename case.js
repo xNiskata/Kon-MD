@@ -2210,7 +2210,7 @@ Jika ada eror, atau ingin sewa bot silahkan hubungi owner.
 │	◦ ${prefix}setppbot *image*
 └	◦ ${prefix}setexif
 `
-var button = [{ buttonId: `${prefix}dashboard`, buttonText: { displayText: `dashboard` }, type: 1 }, { buttonId: `${prefix}owner`, buttonText: { displayText: `owner` }, type: 1 }]
+var button = [{ buttonId: `${prefix}dashboard`, buttonText: { displayText: `🏘️ Dashboard` }, type: 1 }, { buttonId: `${prefix}owner`, buttonText: { displayText: `👤 Owner` }, type: 1 }]
 client.sendMessage(m.chat, { caption: `${anu}`, location: { jpegThumbnail: await client.reSize('https://i.pinimg.com/736x/a3/81/38/a38138761928e18992195b6f0f8b3dc1.jpg', 300, 300) }, buttons: button, footer:  botname, mentions: [m.sender] })
 }
 break
