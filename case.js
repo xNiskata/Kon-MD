@@ -1098,7 +1098,7 @@ headerType: 4
 client.sendMessage(m.chat, buttonMessage, { quoted: m })
 }
 break
-case prefix+'ytmp31': {
+case prefix+'ytmp3': {
   addCountCmd(`#${command.slice(1)}`, sender, _cmd)
   if (!args[0]) throw 'Linknya mana?'
   m.reply(mess.wait)
@@ -1107,7 +1107,7 @@ case prefix+'ytmp31': {
   client.sendMessage(m.chat, { audio: { url: url }, mimetype: 'audio/mpeg' }, { quoted: m })
   }
   break
-case prefix+'ytmp3': case prefix+'ytaudio': {
+case prefix+'ytmp31': case prefix+'ytaudio': {
 addCountCmd(`#${command.slice(1)}`, sender, _cmd)
 let { yta } = require('./lib/y2mate')
 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 128kbps`
