@@ -1118,7 +1118,20 @@ client.sendImage(m.chat, media.thumb, `${sp} Title : ${media.title}\n${sp} File 
 client.sendMessage(m.chat, { document: await getBuffer(media.dl_link), mimetype: 'audio/mpeg', fileName: `${media.title}.mp3` }, { quoted: m })
 }
 break
-case prefix+'ytmp4': case prefix+'ytvideo': {
+
+case prefix+'ytmp4': case prefix+'facebook': case prefix+'ytvideo':{
+addCountCmd(`#${command.slice(1)}`, sender, _cmd)
+if (!args[0]) throw 'Linknya mana?'
+m.reply(mess.wait)
+let res = await bochil.savefrom(args[0])
+let yp4 = res.url
+let { url } = await yp4[0]
+client.sendMessage(m.chat, { video: { url: url }, mimetype: 'video/mp4', caption: wm }, { quoted: m })
+//client.sendMedia2(m.chat, url, m, { caption: wm })
+}
+break
+    
+case prefix+'ytmp41': case prefix+'ytvideo1': {
 addCountCmd(`#${command.slice(1)}`, sender, _cmd)
 let { ytv } = require('./lib/y2mate')
 if (!text) throw `Example : ${prefix + command} https://youtube.com/watch?v=PtFMh6Tccag%27 360p`
