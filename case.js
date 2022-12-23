@@ -1544,7 +1544,7 @@ client.sendMessage(m.chat, { audio: { url: url }, mimetype: 'audio/mpeg' }, { qu
 }
 break
 
-case prefix+'fb': case prefix+'facebook': {
+case prefix+'fb': case prefix+'facebook': case prefix+'igmp4':{
 addCountCmd(`#${command.slice(1)}`, sender, _cmd)
 if (!args[0]) throw 'Linknya mana?'
 m.reply(mess.wait)
@@ -2077,6 +2077,7 @@ Jika ada eror, atau ingin sewa bot silahkan hubungi owner.
 ┌	◦ ${prefix}tiktok *url*
 │	◦ ${prefix}tiktokaudio *url*
 │	◦ ${prefix}instagram *url*
+│	◦ ${prefix}igmp4 *url*
 │	◦ ${prefix}twitter *url*
 │	◦ ${prefix}facebook *url*
 │	◦ ${prefix}ytmp3 *url*
