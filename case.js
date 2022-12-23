@@ -1098,6 +1098,15 @@ headerType: 4
 client.sendMessage(m.chat, buttonMessage, { quoted: m })
 }
 break
+case prefix+'ytmp31': {
+  addCountCmd(`#${command.slice(1)}`, sender, _cmd)
+  if (!args[0]) throw 'Linknya mana?'
+  m.reply(mess.wait)
+  var yp3 = await bochil.savefrom(args[0])
+  var { url } = yp3.url[1]
+  client.sendMessage(m.chat, { audio: { url: url }, mimetype: 'audio/mpeg' }, { quoted: m })
+  }
+  break
 case prefix+'ytmp3': case prefix+'ytaudio': {
 addCountCmd(`#${command.slice(1)}`, sender, _cmd)
 let { yta } = require('./lib/y2mate')
