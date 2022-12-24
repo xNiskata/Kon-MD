@@ -770,7 +770,7 @@ case 'bcgc': case 'bcgroup': {
             url: 'https://wa.me/6282327759039'
             }
             }]
-await client.sendButtonText(i, txt, client.user.name, btn)
+await client.sendButtonText(i, txt, client.user.name, btn, {quoted: m})
     }
     m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
 }
