@@ -754,25 +754,25 @@ if (!isBaileys) throw 'Pesan tersebut bukan dikirim oleh bot!'
 client.sendMessage(m.chat, { delete: { remoteJid: m.chat, fromMe: true, id: m.quoted.id, participant: m.quoted.sender } })
 }
 break
-case prefix+'bcgc': case prefix+'bcgroup': {
-if (!isCreator) throw mess.owner
-if (!text) throw `Text mana?\n\nExample : ${prefix + command} fatih-san`
-let getGroups = await client.groupFetchAllParticipating()
-let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
-let anu = groups.map(v => v.id)
-m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
-for (let i of anu) {
-await sleep(1500)
-let btn = [{
-urlButton: {
-displayText: 'Contact Owner ✆',
-url: 'https://wa.me/6282327759039'
-}
-}]
-  let txt = `「 Broadcast Bot 」\n\n${text}`
-  client.send5ButImg(i, txt, client.user.name, global.thumb, btn)
-}
-m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
+case 'bcgc': case 'bcgroup': {
+    if (!isCreator) throw mess.owner
+    if (!text) throw `Text mana?\n\nContoh : ${prefix + command} Akame ><`
+    let getGroups = await client.groupFetchAllParticipating()
+    let groups = Object.entries(getGroups).slice(0).map(entry => entry[1])
+    let anu = groups.map(v => v.id)
+    m.reply(`Mengirim Broadcast Ke ${anu.length} Group Chat, Waktu Selesai ${anu.length * 1.5} detik`)
+    for (let i of anu) {
+        await sleep(1500)
+          let txt = `「 Broadcast Bot 」\n\n${text}`
+          let btn = [{
+            urlButton: {
+            displayText: 'Contact Owner ✆',
+            url: 'https://wa.me/6282327759039'
+            }
+            }]
+await client.sendButtonText(i, txt, client.user.name, btn)
+    }
+    m.reply(`Sukses Mengirim Broadcast Ke ${anu.length} Group`)
 }
 break
 case prefix+'bc': case prefix+'broadcast': case prefix+'bcall': {
