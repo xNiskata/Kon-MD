@@ -41,7 +41,7 @@ global.limitawal = {
 }
 
 //gambar
-global.thumb = 'https://telegra.ph/file/86af4bca3faf0f9896d50.jpg'
+global.thumb = 'https://i.ibb.co/8Y1dyB0/20221224-092219.jpg'
 
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
