@@ -5,7 +5,7 @@ const chalk = require('chalk')
 global.xteam = 'apivproject'
 
 //stick
-global.author = 'Follow Instagram\n  @Kurokochi_  '
+global.author = 'Follow Instagram\n  @xKurokochi_  '
 global.packname = '6285801284666\n'
 
 //Link
