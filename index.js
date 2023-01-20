@@ -1,6 +1,5 @@
 require('./config')
-const { default: clientConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, getContentType, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateWAMessage, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto, WAMessageProto } = require("baileys")
-const { state, saveCreds } = useSingleFileAuthState(`./${sessionName}.json`)
+const { default: clientConnect, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion, getContentType, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateWAMessage, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto, WAMessageProto } = require("baileys")
 const pino = require('pino')
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
@@ -32,7 +31,7 @@ global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
     new cloudDBAdapter(opts['db']) : /mongodb/.test(opts['db']) ?
       new mongoDB(opts['db']) :
-      new JSONFile(`src/database.json`)
+      new JSONFile(`./database.json`)
 )
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
@@ -62,10 +61,32 @@ if (global.db) setInterval(async () => {
   }, 30 * 1000)
 
 async function startclient() {
+	const { state, saveCreds } = await useMultiFileAuthState(`./${sessionName}`)
     const client = clientConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['zets-bot','Safari','1.0.0'],
+        browser: ['Kon-bot','Safari','1.0.0'],
+        patchMessageBeforeSending: (message) => {
+                const requiresPatch = !!(
+                  message.buttonsMessage
+              	  || message.templateMessage
+              		|| message.listMessage
+                );
+                if (requiresPatch) {
+                    message = {
+                        viewOnceMessage: {
+                            message: {
+                                messageContextInfo: {
+                                    deviceListMetadataVersion: 2,
+                                    deviceListMetadata: {},
+                                },
+                                ...message,
+                            },
+                        },
+                    };
+                }
+                return message;
+    },
         auth: state
     })
 
@@ -765,4 +786,4 @@ fs.watchFile(file, () => {
 	console.log(chalk.redBright(`Update ${__filename}`))
 	delete require.cache[file]
 	require(file)
-})
+}) 
