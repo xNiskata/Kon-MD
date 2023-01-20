@@ -1,6 +1,6 @@
 require('./config')
 const { default: clientConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, getContentType, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateWAMessage, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto, WAMessageProto } = require("baileys")
-const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
+const { state, saveCreds } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino')
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
@@ -253,7 +253,7 @@ async function startclient() {
         console.log('Connected...', update)
     })
 
-    client.ev.on('creds.update', saveState)
+    client.ev.on('creds.update', saveCreds)
 
     /** Resize Image
       *
